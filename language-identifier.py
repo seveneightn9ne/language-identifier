@@ -3,7 +3,6 @@ class Question(object):
     def __init__(question="", choices=None):
         self.question = question
         self.choices = choices or []
-        self.answer = None
 
     def ask():
         print(question + "\n")
@@ -18,8 +17,8 @@ class Question(object):
                 print("Not a valid number")
                 return _ask()
             return answer
-        self.answer = _ask()
-        return self.answer
+
+        return _ask()
 
     # def analyze_answer():
 
@@ -39,9 +38,10 @@ class Language(object):
 questions = [Question("How do you define a function?",
                         ["def foo(bar, baz): ...", 
                          "function foo(bar, baz) { ... }", 
+                         "There are no functions in this language",
                          "I don't know / other"]
                      )]
-possible_languages = [Language("Python"), Language("JavaScript")]
+possible_languages = [Language("Python", {questions[0]: 0}), Language("JavaScript")]
 
 for question in questions:
     answer = question.ask()
