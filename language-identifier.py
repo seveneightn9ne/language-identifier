@@ -13,6 +13,21 @@ def filter_with_question(question, possible_languages):
     answer = question.ask()
     return set(filter(lambda x: x.check(question, answer), possible_languages))
 
+def pick_next_question(unasked_questions, possible_languages):
+    question_ranks = {}
+    for question in unasked_questions:
+        number_choices = len(question.choices)
+        choice_ranks = {choice : 0 for choice in question.choices}
+        for language in possible_languages:
+            for choice in language.passing_answers[question]:
+                choice_ranks[choice] += 1
+        choice_ranks_list = sorted([(choice, choice_ranks[choice]) for choice in choice_ranks where choice_ranks[choice] != 0], key=lambda (choice, rank): rank)
+        if len(choice_ranks_list)<=1:
+            question_ranks[question] = 999
+        else:
+            question_ranks[question] = abs(choice_ranks_list[0][1]-choice_ranks_list[-1][1])
+    return max(question_ranks.iterkeys(), key=lambda k: question_ranks[k])
+
 
 def run_game(all_languages, all_questions):
     unasked_questions = list(all_questions)
