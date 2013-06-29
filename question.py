@@ -5,7 +5,7 @@ class Question(object):
 
     def ask(self):
         print(self.question + "\n")
-        for i, choice in enumerate(choices): print(choice)
+        for i, choice in enumerate(self.choices): print(choice)
 
         def _ask():
             try:

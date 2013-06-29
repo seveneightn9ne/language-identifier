@@ -8,7 +8,7 @@ class Question(object):
 
     def ask(self):
         print(self.question + "\n")
-        for i, choice in enumerate(choices): print(choice)
+        for i, choice in enumerate(self.choices): print(choice)
 
         def _ask():
             try:
@@ -78,9 +78,15 @@ def run_game(all_languages, all_questions):
 
 
 if __name__ == "__main__":
-    parens = Question("Are there parens?", {
+    parens = Question("Are there lots of parenthesis?", {
         'yes': "Yes.",
         'no' : "No.",
         })
-    languages = !TBD!
-    run_game()
+    js = Language("javascript", {
+        parens: 'yes' })
+    lisp = Language("lisp", {
+        parens: 'yes' })
+
+    languages = set([js, lisp])
+    questions = [parens]
+    run_game(languages, questions)

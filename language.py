@@ -10,7 +10,7 @@ class Language(object):
             }
         """
         self.name = name
-        self.passing_answers = {key: set(val) for key, val in passing_answers}
+        self.passing_answers = {key: set(passing_answers[key]) for key in passing_answers}
 
     def check(self, question, answer_symbol):
         """
