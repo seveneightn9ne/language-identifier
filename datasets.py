@@ -22,7 +22,7 @@ def simpleset():
     })
 
     languages = set([js, lisp])
-    questions = set(parens)
+    questions = set([parens])
 
     return languages, questions
 
@@ -54,6 +54,40 @@ def biggerset():
     })
 
     languages = set([js, lisp, brainfuck])
-    questions = set(parens, intuitive)
+    questions = set([parens, intuitive])
+
+    return languages, questions
+
+def picky_dataset():
+    contains_a = Question("Does it contain an a?", {
+        'yes': "Yes",
+        'no': "No"
+    })
+    contains_b = Question("Does it contain a b?", {
+        'yes': "Yes",
+        'no': "No"
+    })
+    contains_c = Question("Does it contain a c?", {
+        'yes': "Yes",
+        'no': "No"
+    })
+    abracadabra = Language("banana", {
+        contains_a: ['yes'],
+        contains_b: ['yes'],
+        contains_c: ['no']
+        })
+    apple = Language("apple", {
+        contains_a: ['yes'],
+        contains_b: ['no'],
+        contains_c: ['no']
+        })
+    boca = Language("boca", {
+        contains_a: ['yes'],
+        contains_b: ['yes'],
+        contains_c: ['yes']
+        })
+
+    languages = set([abracadabra, apple, boca])
+    questions = set([contains_a, contains_b, contains_c])
 
     return languages, questions

@@ -25,7 +25,7 @@ def pick_next_question(unasked_questions, possible_languages):
             question_ranks[question] = 999
         else:
             question_ranks[question] = abs(choice_ranks_list[0][1]-choice_ranks_list[-1][1])
-    return max(question_ranks.iterkeys(), key=lambda k: question_ranks[k])
+    return min(question_ranks.iterkeys(), key=lambda k: question_ranks[k])
 
 
 def run_game(all_languages, all_questions):
@@ -54,4 +54,4 @@ def run_game(all_languages, all_questions):
 if __name__ == "__main__":
     import datasets
     # run_game(*datasets.simpleset())
-    run_game(*datasets.biggerset())
+    run_game(*datasets.picky_dataset())
