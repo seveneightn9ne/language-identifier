@@ -1,5 +1,13 @@
 class Question(object):
     def __init__(self, question="", choices=None):
+        """
+        question is question text e.g. "Are there parens?"
+
+        choices is a dict e.g. {
+            'yes': "Yes.",
+            'no': "Yes.",
+        }
+        """
         self.question = question
         self.choices = choices or []
 
