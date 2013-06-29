@@ -5,11 +5,11 @@ class Question(object):
 
     def ask(self):
         print(self.question + "\n")
-        for i, choice in enumerate(self.choices): print(choice)
+        for i, choice in enumerate(self.choices): print "{}. {}".format(i+1, choice)
 
         def _ask():
             try:
-                answer = int(raw_input(self.question))
+                answer = int(raw_input("> "))-1
             except ValueError:
                 print("Not a valid number")
                 return _ask()
