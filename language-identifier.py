@@ -1,6 +1,3 @@
-from language import Language
-from question import Question
-
 def findin(f, l):
     """ Like filter() but short-circuiting and returns the thing """
     for e in l:
@@ -47,25 +44,11 @@ def run_game(all_languages, all_questions):
         return None
 
     selected_langauge = possible_languages.pop()
-    print "Your looking at {}.".format(selected_langauge.name)
+    print "You're looking at {}.".format(selected_langauge.name)
     return selected_langauge
 
 
 if __name__ == "__main__":
-    parens = Question("Are there lots of parenthesis?", {
-        'yes': "Yes.",
-        'no' : "No.",
-        })
-
-    js = Language("javascript", {
-        parens: ['no'] })
-
-    lisp = Language("lisp", {
-        parens: ['yes'] })
-
-    languages = set([js, lisp])
-    questions = [parens]
-
-    run_game(languages, questions)
-
-    # print lisp.check(parens, 'no')
+    import datasets
+    # run_game(*datasets.simpleset())
+    run_game(*datasets.biggerset())
