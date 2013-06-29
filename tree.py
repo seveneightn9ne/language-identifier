@@ -38,24 +38,10 @@ def parse_tree(data):
 
         raw_node = data[key]
         if raw_node['type'] == 'y/n':
-            # print 'WARN: skipping y/n'
-            # nodes[key] = {
-            #     'type': 'y/n',
-            #     'name': raw_node['name'],
-            #     'question': raw_node['question'],
-            #     'y-to': parse_key(raw_node['y-to']),
-            #     'n-to': parse_key(raw_node['y-to']),
-            # }
             nodes[key] = YesNo(raw_node['name'], raw_node['question'],
                 parse_key(raw_node['y-to']),
                 parse_key(raw_node['n-to']))
         elif raw_node['type'] == 'leaf':
-            # print 'WARN: skipping leaf'
-            # nodes[key] = {
-            #     'type': 'leaf',
-            #     'name': raw_node['name'],
-            #     'display': raw_node['display'],
-            # }
             nodes[key] = Leaf(raw_node['name'], raw_node['display'])
         else:
             raise ValueError("Unrecognized node type '#{}'".format(raw_node['type']))
