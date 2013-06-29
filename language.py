@@ -10,13 +10,7 @@ class Language(object):
             }
         """
         self.name = name
-
-        def format_answers(answers):
-            if isinstance(answers, set) or isinstance(answers, list):
-                return set(answers)
-            else:
-                return set([answers])
-        self.passing_answers = map(format_answers, passing_answers)
+        self.passing_answers = {key: set(val) for key, val in passing_answers}
 
     def check(self, question, answer_symbol):
         """
