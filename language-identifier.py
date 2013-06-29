@@ -20,11 +20,15 @@ def run_game(all_languages, all_questions):
 
     while len(possible_languages) > 1:
         if len(unasked_questions) == 0:
-            print "I don't know this language."
+            print "I don't know this language. (out of questions)"
             return None
 
         question = unasked_questions.pop()
         possible_languages = filter_with_question(question, possible_languages)
+
+    if len(possible_languages) is 0:
+        print "I don't know this language. (no matching languages)"
+        return None
 
     selected_langauge = possible_languages.pop()
     print "Your looking at {}.".format(selected_langauge.name)
