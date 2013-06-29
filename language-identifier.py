@@ -40,11 +40,16 @@ if __name__ == "__main__":
         'yes': "Yes.",
         'no' : "No.",
         })
+
     js = Language("javascript", {
-        parens: 'yes' })
+        parens: ['no'] })
+
     lisp = Language("lisp", {
-        parens: 'yes' })
+        parens: ['yes'] })
 
     languages = set([js, lisp])
     questions = [parens]
+
     run_game(languages, questions)
+
+    # print lisp.check(parens, 'no')

@@ -17,7 +17,7 @@ class Language(object):
         Return whether the language is compatible with the question answer combination.
         """
         if question in self.passing_answers:
-            if self.passing_answers[question] == answer_symbol:
+            if answer_symbol in self.passing_answers[question]:
                 return True
             return False
         else:
