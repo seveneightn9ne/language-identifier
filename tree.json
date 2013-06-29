@@ -1,0 +1,19 @@
+{
+  "parens": {
+    "type": "y/n",
+    "name": "parens",
+    "question": "Are there lots of parenthesis?",
+    "y-to": "lisp",
+    "n-to": "coffeescript"
+  },
+  "lisp": {
+    "type": "leaf",
+    "name": "lisp",
+    "display": "It's lisp!"
+  },
+  "coffeescript": {
+    "type": "leaf",
+    "name": "coffeescript",
+    "display": "It's coffeescript!"
+  }
+}
