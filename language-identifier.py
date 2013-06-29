@@ -2,11 +2,11 @@ from language import Language
 from question import Question
 
 def findin(f, l):
-    """ Like filter() but short-circuiting and returns a boolean """
+    """ Like filter() but short-circuiting and returns the thing """
     for e in l:
         if f(e):
-            return True
-    return False
+            return e
+    return None
 
 
 def filter_with_question(question, possible_languages):
