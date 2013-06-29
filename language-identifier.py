@@ -43,14 +43,29 @@ questions = [Question("How do you define a function?",
                      )]
 possible_languages = [Language("Python", {questions[0]: 0}), Language("JavaScript")]
 
-for question in questions:
+
+
+def filter_with_question(question, possible_languages):
     answer = question.ask()
-    for language in possible_languages:
-        if language.response_to(question) != answer:
-            possible_languages.remove(language)
-    if possible_languages.size() == 1:
-        print "The language is "+possible_languages[0].name
-        break
-    if possible_languages.size() == 0:
-        print "I don't know this language."
-        break
+    return set(filter(lambda x: x.check(question, answer), possible_languages))
+
+
+def run_game(all_languages, all_questions):
+    unasked_questions = list(all_questions)
+    possible_languages = set(all_languages)
+
+    while len(possible_languages) > 1:
+        if len(unasked_questions) == 0:
+            print "I don't know this language."
+            return None
+
+        question = unasked_questions.pop()
+        possible_languages = filter_with_question(question, possible_languages)
+
+    selected_langauge = possible_languages.pop()
+    print "Your looking at {}.".format(selected_langauge.name)
+    return possible_languages.pop()
+
+
+if __name__ == "__main__":
+    run_game()
