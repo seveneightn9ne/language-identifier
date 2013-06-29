@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# source this to have pythonbrew enable the language-tree virtualenv
+pythonbrew venv use language-identifier
