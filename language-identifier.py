@@ -23,6 +23,7 @@ def run_game(all_languages, all_questions):
             print "I don't know this language. (out of questions)"
             return None
 
+        # TODO pick next question in an aware way
         question = unasked_questions.pop()
         possible_languages = filter_with_question(question, possible_languages)
 
@@ -32,7 +33,7 @@ def run_game(all_languages, all_questions):
 
     selected_langauge = possible_languages.pop()
     print "Your looking at {}.".format(selected_langauge.name)
-    return possible_languages.pop()
+    return selected_langauge
 
 
 if __name__ == "__main__":

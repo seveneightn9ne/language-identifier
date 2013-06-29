@@ -5,18 +5,19 @@ class Question(object):
 
     def ask(self):
         print(self.question + "\n")
-        for i, choice in enumerate(self.choices):
-            print "{}. {}".format(i + 1, choice)
+        keys = self.choices.keys()
+        for i, key in enumerate(keys):
+            print "{}. {}".format(i + 1, self.choices[key])
 
         def _ask():
             try:
-                answer = int(raw_input("> ")) - 1
+                answer_i = int(raw_input("> ")) - 1
             except ValueError:
                 print("Not a valid number")
                 return _ask()
-            if len(self.choices) < answer + 1:
+            if len(keys) < answer_i + 1:
                 print("Not a valid number")
                 return _ask()
-            return answer
+            return keys[answer_i]
 
         return _ask()
