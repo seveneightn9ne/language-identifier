@@ -22,7 +22,7 @@ def simpleset():
     })
 
     languages = set([js, lisp])
-    questions = [parens]
+    questions = set(parens)
 
     return languages, questions
 
@@ -54,6 +54,6 @@ def biggerset():
     })
 
     languages = set([js, lisp, brainfuck])
-    questions = [parens, intuitive]
+    questions = set(parens, intuitive)
 
     return languages, questions
