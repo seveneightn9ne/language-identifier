@@ -18,7 +18,8 @@ def pick_next_question(unasked_questions, possible_languages):
         for language in possible_languages:
             for choice in language.passing_answers[question]:
                 choice_ranks[choice] += 1
-        choice_ranks_list = sorted([(choice, choice_ranks[choice]) for choice in choice_ranks where choice_ranks[choice] != 0], key=lambda (choice, rank): rank)
+        choice_ranks_list = [(choice, choice_ranks[choice]) for choice in choice_ranks if choice_ranks[choice] != 0]
+        choice_ranks_list = sorted(choice_ranks_list, key=lambda (choice, rank): rank)
         if len(choice_ranks_list)<=1:
             question_ranks[question] = 999
         else:
