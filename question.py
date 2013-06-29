@@ -12,7 +12,7 @@ class Question(object):
         self.choices = choices or []
 
     def ask(self):
-        print(self.question + "\n")
+        print "\n{}".format(self.question)
         keys = self.choices.keys()
         for i, key in enumerate(keys):
             print "{}. {}".format(i + 1, self.choices[key])
