@@ -48,13 +48,13 @@ if __name__ == "__main__":
     print "Welcome to the programming language identifier!"
     while True:
         print "What would you like to do?"
-        print "1. Run the identifier"
-        print "2. Learn about a language"
-        print "3. Add a language or question"
-        print "4. Run the analyzer"
-        print "5. Quit"
+        print "1. (i)dentify a language"
+        print "2. (l)earn about a language"
+        print "3. (a)dd a language or question"
+        print "4. Run the analy(z)er"
+        print "5. (q)uit"
         action = raw_input("> ").strip()
-        if action == "1":
+        if action == "1" or action == "i":
             run_game(*datasets.picky_dataset())
-        if action == "5":
+        if action == "5" or action == "q":
             break
