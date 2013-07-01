@@ -45,5 +45,16 @@ def run_game(all_languages, all_questions):
 
 if __name__ == "__main__":
     import datasets
-    # run_game(*datasets.simpleset())
-    run_game(*datasets.picky_dataset())
+    print "Welcome to the programming language identifier!"
+    while True:
+        print "What would you like to do?"
+        print "1. Run the identifier"
+        print "2. Learn about a language"
+        print "3. Add a language or question"
+        print "4. Run the analyzer"
+        print "5. Quit"
+        action = raw_input("> ").strip()
+        if action == "1":
+            run_game(*datasets.picky_dataset())
+        if action == "5":
+            break
