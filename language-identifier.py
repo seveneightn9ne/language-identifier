@@ -1,11 +1,3 @@
-def findin(f, l):
-    """ Like filter() but short-circuiting and returns the thing """
-    for e in l:
-        if f(e):
-            return e
-    return None
-
-
 def filter_with_question(question, possible_languages):
     answer = question.ask()
     return set(filter(lambda x: x.check(question, answer), possible_languages))
