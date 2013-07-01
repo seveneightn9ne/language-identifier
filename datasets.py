@@ -91,3 +91,25 @@ def picky_dataset():
     questions = set([contains_a, contains_b, contains_c])
 
     return languages, questions
+
+def newset():
+    languages = set([
+        Language("C", {}),
+        Language("C++", {}),
+        Language("Objective-C", {}),
+        Language("Python", {}),
+        Language("Javascript", {}),
+        Language("PHP", {}),
+        Language("Perl", {}),
+        Language("SQL", {}),
+        Language("Arduino", {}),
+        Language("Java", {}),
+        Language("Lisp", {}),
+        Language("Scheme", {}),
+        Language("R", {}),
+        Language("Brainf**k", {}),
+    ])
+
+    questions = set()
+
+    return languages, questions
