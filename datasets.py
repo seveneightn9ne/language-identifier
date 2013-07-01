@@ -92,24 +92,141 @@ def picky_dataset():
 
     return languages, questions
 
+
 def newset():
+    full_parens = Question("Do parenthesis surround all calls\nLike this: (sum 4 (product 3 2))?", {
+        'yes': "Yes.",
+        'no':  "No.",
+    })
+
+    message_passing = Question("Are methods called via messages that look like this?\nexample: [[MyObject alloc] init]", {
+        'yes': "Yes.",
+        'no':  "No.",
+    })
+
+    pin_mode = Question("Is the pinMode(a,b) function called?", {
+        'yes': "Yes.",
+        'no':  "No.",
+    })
+
+    semicolons = Question("Do semicolons end most lines?", {
+        'yes': "Yes.",
+        'no': "No.",
+    })
+
+    variable_declaration = Question("What does it look like when a NEW variable is set?", {
+        'type=': "int x = 4",
+        'var=': "var x = 4",
+        'val=': "val x = 4",
+        '$=': "$foo = 4",
+        'let': "let foo 4",
+        'defn': "defn",
+        'implicit': "x = 4",
+    })
+
     languages = set([
-        Language("C", {}),
-        Language("C++", {}),
-        Language("Objective-C", {}),
-        Language("Python", {}),
-        Language("Javascript", {}),
-        Language("PHP", {}),
-        Language("Perl", {}),
-        Language("SQL", {}),
-        Language("Arduino", {}),
-        Language("Java", {}),
-        Language("Lisp", {}),
-        Language("Scheme", {}),
-        Language("R", {}),
-        Language("Brainf**k", {}),
+        Language("C", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes'],
+            variable_declaration: ['type='],
+        }),
+        Language("C++", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes'],
+            variable_declaration: ['type='],
+        }),
+        Language("Objective-C", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes', 'no'],
+            variable_declaration: ['type='],
+        }),
+        Language("Python", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['no'],
+            variable_declaration: ['implicit'],
+        }),
+        Language("Javascript", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes', 'no'],
+            variable_declaration: ['var='],
+        }),
+        Language("Coffeescript", {
+            full_parens: ['yes', 'no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes', 'no'],
+            variable_declaration: ['var='],
+        }),
+        Language("PHP", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes'],
+            variable_declaration: ['$='],
+        }),
+        Language("Perl", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes'],
+            variable_declaration: ['$='],
+        }),
+        Language("SQL", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes'],
+            variable_declaration: [],
+        }),
+        Language("Arduino", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['yes'],
+            semicolons: ['yes'],
+            variable_declaration: ['type='],
+        }),
+        Language("Java", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['yes'],
+            variable_declaration: ['type='],
+        }),
+        Language("Lisp", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['no'],
+            variable_declaration: ['let', 'defn'],
+        }),
+        Language("Scheme", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['no'],
+            variable_declaration: ['let', 'defn'],
+        }),
+        # Language("R", {
+        # }),
+        Language("Brainf**k", {
+            full_parens: ['no'],
+            message_passing: ['no'],
+            pin_mode: ['no'],
+            semicolons: ['no'],
+            variable_declaration: [],
+        }),
     ])
 
-    questions = set()
+    questions = set([full_parens, message_passing, pin_mode, semicolons, variable_declaration])
 
     return languages, questions
