@@ -42,19 +42,28 @@ def run_game(all_languages, all_questions):
     print "You're looking at {}.".format(selected_langauge.name)
     return selected_langauge
 
-
+def learn_language(all_languages, all_questions):
+    lang_name = raw_input("Which language would you like to learn about?\n> ").lower()
+    lang = [language for language in all_languages if language.name.lower() == lang_name][0]
+    print "Here's what I know about {}.".format(lang.name)
 if __name__ == "__main__":
     import datasets
-    print "Welcome to the programming language identifier!"
+    current_dataset = datasets.picky_dataset()
+
+    print "\nWelcome to the programming language identifier!\n"
     while True:
-        print "What would you like to do?"
+        print "What would you like to do?\n"
         print "1. (i)dentify a language"
         print "2. (l)earn about a language"
         print "3. (a)dd a language or question"
         print "4. Run the analy(z)er"
         print "5. (q)uit"
-        action = raw_input("> ").strip()
-        if action == "1" or action == "i":
-            run_game(*datasets.picky_dataset())
-        if action == "5" or action == "q":
+        action = raw_input("\n> ").strip().lower()
+        if action in ("1","i"):
+            run_game(*current_dataset)
+        if action in ("2", "l"):
+            learn_language(*current_dataset)
+        if action in ("5","q"):
             break
+        else:
+            run_game(*current_dataset)
