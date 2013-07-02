@@ -1,4 +1,9 @@
+from clint.textui import colored
+
 def filter_with_question(question, possible_languages):
+    """
+    Asks a question, then returns all languages that have that answer
+    """
     answer = question.ask()
     return set(filter(lambda x: x.check(question, answer), possible_languages))
 
@@ -44,14 +49,25 @@ def run_game(all_languages, all_questions):
 
 def learn_language(all_languages, all_questions):
     lang_name = raw_input("Which language would you like to learn about?\n> ").lower()
-    lang = [language for language in all_languages if language.name.lower() == lang_name][0]
+    langs = [language for language in all_languages if language.name.lower() == lang_name]
+    if len(langs) != 1:
+        print "I don't know anything about that language."
+        return
+    else:
+        lang = langs[0]
     print "Here's what I know about {}.".format(lang.name)
+    for question in all_questions:
+        if question in lang.passing_answers:
+            answers = [question.choices[answer_key] for answer_key in lang.passing_answers[question]]
+
+            print question.question, colored.red(", ".join(answers))
+    pauser = raw_input("")
 
 
 if __name__ == "__main__":
     import datasets
     try:
-        current_dataset = datasets.picky_dataset()
+        current_dataset = datasets.newset()
 
         print "\nWelcome to the programming language identifier!\n"
         while True:
@@ -64,8 +80,10 @@ if __name__ == "__main__":
             action = raw_input("> ").strip().lower()
             if action in ("1","i"):
                 run_game(*current_dataset)
+                continue
             if action in ("2", "l"):
                 learn_language(*current_dataset)
+                continue
             if action in ("5","q"):
                 break
             else:
